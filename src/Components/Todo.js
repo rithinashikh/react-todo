@@ -12,7 +12,16 @@ const [todo,setTodo] = useState('');
 const [todos,setTodos] = useState([]);
 
 const addTodos = () => {
-    setTodos([...todos,{list:todo, id:Date.now() ,status:false}])
+    const duplicate = todos.find((item)=> item.list === todo)
+    if (duplicate !== undefined) {
+        window.confirm("Item already in todo list");
+        return;
+    }
+    else {
+        setTodos([...todos,{list:todo, id:Date.now() ,status:false}]) 
+        return; 
+    }    
+
 }
 
 const todoComplete = (id) => {
